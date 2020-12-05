@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>QueueManagmentSystem</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script type=text/javascript>
+        $(function() {
+          $('a#generate_token').on('click', function(e) {
+            e.preventDefault()
+            $.getJSON('/generate_token',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+</script>
+
+</head>
+
+<body>
+   
+    <div class="container">
+        <div class="d-flex justify-content-center h-100" style="margin-top: 60px;">
+            <div class="card col-sm-7">
+                <div class="card-header">
+                    <img src="/static/images/logo2.jpg" alt="Ethio Telecom">
+                </div>
+               
+                <div class="card-body d-flex justify-content-center">
+                    <form method="post">
+                        <div class="form-group ">
+                            <label for="exampleFormControlSelect1">Departments</label>
+                            <select for="departments" name="departments" class="form-control" id="department">
+                                {%for department in departments%}
+                                    <option for="departments" name="departments" value="{{department.id}}">{{department.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Streams</label>
+                            <select for="streams" name="streams" class="form-control" id="stream">
+                                {% for stream in streams %}
+                                    <option for="streams" name="streams" value="{{stream.id}}">{{stream.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <input class="btn generate text-white" type="submit" id="start_processing" value="Start Processing">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <a class="btn generate text-white  float-right"  href='/counter/login'>Logout</a>
+    </div>
+
+</body>
+
+</html>
